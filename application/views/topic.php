@@ -46,6 +46,7 @@
 						$("#editor_reply").attr('style', 'display:block');
 						var reply_user_name = $("#reply_" + reply_floor_id).attr('username');
 						$("#editor_reply div input").val(reply_floor_id + '楼：' + reply_user_name);
+						$("body,html").animate({scrollTop:$("#editor_form").offset().top-100},0);
 					}
 				},
 				
@@ -83,12 +84,13 @@
 					});
 					$("a.floor-reply-href").click(function(e)
 					{
-						reply_floor_id = $(e.target).attr("floorid");
+						reply_floor_id = Math.ceil($(e.target).attr("floorid"));
 						$.change_reply_floor();
 					});
 					$("a.floor-href").click(function(e)
 					{
-						floor_id = $(e.target).attr("floorid");
+						floor_id = Math.ceil($(e.target).attr("floorid"));
+						arr['reply_page'] = Math.ceil(floor_id / reply_per_page);
 						generate_reply_list(arr, $.reply_list_change);
 					});
 				}
@@ -168,7 +170,7 @@
         	<div id="editor_reply" style="display:none">
             	<div class="input-group">
                     <span class="input-group-addon" id="editor_reply_addon">回复</span>
-                    <input type="text" class="form-control" placeholder="None" aria-describedby="editor_reply_addon" readonly="readonly">
+                    <input type="text" class="form-control" placeholder="None" aria-describedby="editor_reply_addon" readonly>
                     <span id="editor_reply_remove" class="input-group-addon"><button type="button" class="btn btn-danger"></button></span>
                 </div>
             </div>

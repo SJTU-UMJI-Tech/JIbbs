@@ -1,6 +1,6 @@
 <?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 
-class Reply_Model extends CI_Model
+class Reply_model extends CI_Model
 {
 		
     function __construct()
@@ -17,7 +17,8 @@ class Reply_Model extends CI_Model
 
 		$this->db->select('*')->from('bbs_reply')
 			->order_by($data['order_field'], $data['order'])
-			->limit($data['step'], $data['first'])
+			//->limit($data['step'], $data['first'])
+			->where(array('floor_id >'=>$data['first'], 'floor_id <='=>$data['first'] + $data['step']))
 			->like('content', $data['key']);
 			
 		if ($data['topic_id'] > 0)

@@ -1,6 +1,6 @@
 <?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 
-class Topic_Obj
+class Topic_obj
 {
 	public $id;
 	public $module_id;

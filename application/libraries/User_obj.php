@@ -1,6 +1,6 @@
 <?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 
-class User_Obj
+class User_obj
 {
 	public $id;
 	public $username;

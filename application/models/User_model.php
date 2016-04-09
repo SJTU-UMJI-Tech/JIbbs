@@ -1,6 +1,6 @@
 <?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 
-class User_Model extends CI_Model
+class User_model extends CI_Model
 {
 	
 	private $validation_rules;
@@ -82,6 +82,8 @@ class User_Model extends CI_Model
 	public function logout()
 	{
 		$this->session->set_userdata('username', '');
+		$this->session->set_userdata('uid', '');
+		$this->session->set_userdata('avatar', '');
 	}
 	
 	public function get_validation_rules($data)

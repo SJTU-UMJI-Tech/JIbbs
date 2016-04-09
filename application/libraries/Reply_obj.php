@@ -1,6 +1,6 @@
 <?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 
-class Reply_Obj
+class Reply_obj
 {
 	public $id;
 	public $topic_id;
@@ -9,6 +9,7 @@ class Reply_Obj
 	public $content;
 	public $CREATE_TIMESTAMP;
 	public $UPDATE_TIMESTAMP;
+	public $state;
 	
 	public function __construct()
 	{
@@ -22,5 +23,6 @@ class Reply_Obj
 		$this->user_id = 0;
 		$this->floor_id = 0;
 		$this->content = 'error_topic';
+		$this->state = 0;
 	}
 }

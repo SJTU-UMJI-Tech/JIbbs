@@ -153,16 +153,22 @@
 					result += pagination;
 					var raw_data = JSON.parse(data);
 					var reply_num = 0;
+					var floor_first = true
 					for (index in raw_data)
 					{
 						if (index == 0)
 						{
 							reply_num = raw_data[0].reply_num;
 						}
+						else if (raw_data[index].state == -1)
+						{
+							
+						}
 						else
 						{
-							if (index == 1)
+							if (floor_first)
 							{
+								floor_first = false;
 								result += '<div class="panel panel-default">';
 								result += '<div class="panel-heading">' + list_data['topic_name'] +'</div>';
 							}
