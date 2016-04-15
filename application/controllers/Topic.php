@@ -9,9 +9,16 @@ class Topic extends Front_Controller
         $this->load->model('user_model');
     }
 	
-	public function _remap($id, $num)
+	private function add()
 	{
-		
+		$this->load->model('module_model');
+		$data['site_title'] = '发表帖子';
+		$data['module_name_array'] = json_encode($this->module_model->get_module_arr());
+		$this->load->view('topic_add', $data);
+	}
+	
+	private function view($id, $num)
+	{
 		$data['topic_id'] = $id;
 		$topic = $this->topic_model->get_topic_by_id($id);
 		if ($topic->id == 0)
@@ -43,9 +50,22 @@ class Topic extends Front_Controller
 			}
 			$this->load->view('topic', $data);
 		}
-		
+	}
+	
+	public function _remap($id, $num)
+	{
+		if ($id == 'add')
+		{
+			$this->add();
+		}
+		else
+		{
+			$this->view($id, $num);
+		}
 		
 	}
+	
+	
 }
 
 ?>

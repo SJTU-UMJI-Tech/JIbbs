@@ -22,13 +22,15 @@ class Welcome extends Front_Controller {
 	public function __construct()
     {
         parent::__construct();
-        $this->load->model('site_model');
+        //$this->load->model('site_model');
         $this->load->model('module_model');
     } 
 	
 	public function index()
 	{
 		$data['site_title'] = '首页';
+		$data['module_name_array'] = json_encode($this->module_model->get_module_arr());
+		$data['module_now'] = 0;
 		$this->load->view('home', $data);
 	}
 	

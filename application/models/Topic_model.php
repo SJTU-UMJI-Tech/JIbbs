@@ -52,11 +52,12 @@ class Topic_model extends CI_Model
 	
 	public function create($data)
 	{
+		$this->load->model('reply_model');
     	$this->db->insert('bbs_topic', array
 		(
 			'module_id'     => $data['module_id'],
 			'user_id'       => $data['user_id'],
-			'name'          => $data['topic'],
+			'name'          => preg_replace("/<([a-zA-Z]+)[^>]*>/","<\\1>",$data['topic']),
 			'reply_num'     => 1,
 			'last_reply_id' => $data['user_id']
 		));
@@ -69,7 +70,8 @@ class Topic_model extends CI_Model
 		$this->db->set('topic_num', 'topic_num+1', FALSE)->where('id', $data['module_id'])->update('bbs_module');
 		$this->db->set('ovalue', 'ovalue+1', FALSE)->where('oname', 'site_topic_number')->update('bbs_config');
 		//$this->db->update('bbs_module', array('topic_num'=>'topic_num+1'), 'id='.$data['module_id']);
-		$this->db->insert('bbs_reply', array
+		
+		$this->reply_model->create(array
 		(
 			'topic_id'      => $topic_id,
 			'user_id'       => $data['user_id'],

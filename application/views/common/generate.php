@@ -22,7 +22,7 @@
 				'</div>' +
 				'<a class="media-left" href="<?php echo base_url('member');?>/' + topic_data['user_name'] + '"><img class="img-rounded" src="' + get_avatar_path(topic_data['user_name'], topic_data['user_avatar'], '') + '" alt="' + topic_data['user_name'] + '_avatar"></a>' +
 				'<div class="media-body">' +
-					'<h4 class="media-heading topic-list-heading"><a href="<?php echo base_url('topic');?>/' + topic_data['topic_id'] + '">' + Base64.decode(topic_data['topic_name']) + '</a></h4>' +
+					'<h4 class="media-heading topic-list-heading"><a href="<?php echo base_url('topic');?>/' + topic_data['topic_id'] + '/1">' + Base64.decode(topic_data['topic_name']) + '</a></h4>' +
 					'<p class="small text-muted">' +
 						'<span><a href="<?php echo base_url('module');?>/' + topic_data['module_id'] + '">' + topic_data['module_name'] + '</a></span>&nbsp;•&nbsp;' +
 						'<span><a href="<?php echo base_url('member');?>/' + topic_data['user_name'] + '">' + topic_data['user_name'] + '</a></span>&nbsp;•&nbsp;' +

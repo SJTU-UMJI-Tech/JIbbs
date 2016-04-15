@@ -11,7 +11,8 @@ class Member extends Front_Controller
 	
 	public function _remap($username)
 	{
-		
+		$data['site_title'] = $username;
+		$this->load->view('member', $data);
 		
 		
 	}

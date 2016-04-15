@@ -26,9 +26,9 @@
                                 <p class="username"><a href="<?php echo base_url('member/'.$this->session->userdata('username'));?>"><?php echo $this->session->userdata('username');?></a></p>
                             </div>
                             <div class="user-panel">
-                                <div class="col-xs-4"><center><a href="<?php echo base_url('topic/show/nodes');?>"><p class="big-font"><?php echo $this->session->userdata('node_follow');?></p><p class="text-muted">动态</p></a></center></div>
+                                <!--<div class="col-xs-4"><center><a href="<?php echo base_url('topic/show/nodes');?>"><p class="big-font"><?php echo $this->session->userdata('node_follow');?></p><p class="text-muted">动态</p></a></center></div>
                                 <div class="col-xs-4 side-border"><center><a href="<?php echo base_url('topic/show/topics');?>"><p class="big-font"><?php echo $this->session->userdata('topic_follow');?></p><p class="text-muted">收藏</p></a></center></div>
-                                <div class="col-xs-4"><center><a href="<?php echo base_url('topic/show/users');?>"><p class="big-font"><?php echo $this->session->userdata('user_follow');?></p><p class="text-muted">关注</p></a></center></div>
+                                <div class="col-xs-4"><center><a href="<?php echo base_url('topic/show/users');?>"><p class="big-font"><?php echo $this->session->userdata('user_follow');?></p><p class="text-muted">关注</p></a></center></div>-->
                             </div>
                         </div>
                         <?php else : ?>
@@ -37,7 +37,7 @@
                     </div>
                     <div class="panel-footer">
                         <?php if ($this->session->userdata('username')) : ?>
-                        <a href="<?php echo base_url('notification');?>"><?php echo $this->session->userdata('notification');?> 条未读提醒</a>
+                        <!--<a href="<?php echo base_url('notification');?>"><?php echo $this->session->userdata('notification');?> 条未读提醒</a>-->
                         <?php else : ?>
                         <a class="register_href" href="<?php echo base_url('user/register');?>">注册</a>　<a class="login_href" href="<?php echo base_url('user/login');?>">登录</a>
                         <?php endif; ?>
@@ -47,6 +47,7 @@
                     <center class="panel-body">
                         <p>
                         	本网站由<a href="https://github.com/SJTU-UMJI-Tech/">JI技术部</a>开发
+                            <br>服务器：李子涵
                             <br>架构：刘逸灏
                             <br>部分UI由周妍君完成
                         </p>
@@ -60,7 +61,6 @@
                         <p>注册会员：<?php echo $site_user_number;?></p>
                         <p>　　主题：<?php echo $site_topic_number;?></p>
                         <p>　　回复：<?php echo $site_reply_number;?></p>
-
                     </div>
                 </div>
             </div><!-- /.col-md-4 -->

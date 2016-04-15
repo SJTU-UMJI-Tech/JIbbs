@@ -1,8 +1,8 @@
 <?php 
-	include 'common/header_common.php';
+	include 'common/header.php';
 	include 'common/generate.php';	
-	include 'common/kindeditor.php';
-	include 'common/header_syntaxhighlighter.php';
+	include 'headers/kindeditor.php';
+	include 'headers/syntaxhighlighter.php';
 ?>
 	<link href="../../static/css/custom.css" rel="stylesheet">
     <script src="../../static/js/pagination.js"></script>
@@ -28,11 +28,14 @@
 			{	
 				change_url: function()
 				{
-					var stateObject = {};
-					var title = "";
 					var newUrl = '/topic/' + arr['topic_id'] + '/' + floor_id;
-					history.pushState(stateObject,title,newUrl);
-					refresh_common_href(true);
+					if (newUrl != window.location.pathname)
+					{
+						var stateObject = {};
+						var title = "";
+						history.pushState(stateObject,title,newUrl);
+						refresh_common_href(true);
+					}
 				},
 				
 				change_reply_floor: function()
@@ -107,7 +110,7 @@
 					alert("帖子长度超过限制");
 					return;
 				}
-				var content = editor.html();
+				var content = editor.text();
 				if (content == '')
 				{
 					alert("请输入回复内容");
@@ -192,11 +195,11 @@
             
         </div>
         
-        <?php include 'common/editor_login.php';?>
+        <?php include 'plugins/editor_login.php';?>
         
         
     </div><!-- /.container -->
 
-<?php include 'common/footer_common.php';?>
+<?php include 'common/footer.php';?>
 </body>
 </html>

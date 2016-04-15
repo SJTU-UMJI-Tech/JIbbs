@@ -14,6 +14,7 @@
 				allowFileManager : true,
 				autoHeightMode : true,
 				resizeType: 0,
+				filterMode : true,
 				afterCreate : function() {
 					this.loadPlugin('autoheight');
 				},

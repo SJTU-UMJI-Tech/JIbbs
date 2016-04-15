@@ -173,28 +173,33 @@ class Ajax extends CI_Controller
 		foreach ($reply_arr as $reply)
 		{
 			$user = $this->user_model->get_user_by_id($reply->user_id);
-			if ($reply->state != 0 && $user->id != $this->session->userdata('uid'))
+			$reply_str[$index] = array
+			(
+				'user_name'       => $user->username,
+				'user_avatar'     => $user->avatar,
+				'content'         => $reply->content,
+				'time_ago'        => $this->get_time_delay($reply->UPDATE_TIMESTAMP),
+				'create_time'     => $reply->CREATE_TIMESTAMP,
+				'update_time'     => $reply->UPDATE_TIMESTAMP,
+				'floor_id'        => $reply->floor_id,
+				'reply_floor'     => $reply->reply_floor,
+				'state'           => $reply->state
+			);
+			if ($reply->state != 0)
 			{
-				$reply_str[$index] = array('state' => -1);
-			}
-			else
-			{
-				$reply_str[$index] = array
-				(
-					'user_name'       => $user->username,
-					'user_avatar'     => $user->avatar,
-					'content'         => $reply->content,
-					'time_ago'        => $this->get_time_delay($reply->UPDATE_TIMESTAMP),
-					'create_time'     => $reply->CREATE_TIMESTAMP,
-					'update_time'     => $reply->UPDATE_TIMESTAMP,
-					'floor_id'        => $reply->floor_id,
-					'reply_floor'     => $reply->reply_floor,
-					'state'           => $reply->state
-				);
-				if (!isset($reply_str[0][$reply->reply_floor]) && $reply->reply_floor > 0 && $reply->reply_floor <= $this->input->get('first') || $reply->reply_floor > $this->input->get('first') + $this->input->get('step'))
+				if ($user->id == $this->session->userdata('uid'))
 				{
-					$reply_str[0][$reply->reply_floor] = $this->reply_model->get_reply_summary(array('topic_id'=>$this->input->get('topic_id'), 'floor_id'=>$reply->reply_floor));
+					$reply_str[$index]['user_type'] = 'author';
 				}
+				else
+				{
+					$reply_str[$index++] = array('state' => -1);
+					continue;
+				}
+			}
+			if (!isset($reply_str[0][$reply->reply_floor]) && $reply->reply_floor > 0 && $reply->reply_floor <= $this->input->get('first') || $reply->reply_floor > $this->input->get('first') + $this->input->get('step'))
+			{
+				$reply_str[0][$reply->reply_floor] = $this->reply_model->get_reply_summary(array('topic_id'=>$this->input->get('topic_id'), 'floor_id'=>$reply->reply_floor));
 			}
 			$index++;
 		}

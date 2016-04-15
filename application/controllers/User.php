@@ -211,6 +211,7 @@ class User extends Front_Controller
 	public function settings()
 	{
 		$data['site_title'] = '设置';
+		$data['user_type'] = '0';
 		
 		
 		$this->load->view('user_settings', $data);

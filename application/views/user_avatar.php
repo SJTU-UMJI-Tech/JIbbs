@@ -1,5 +1,5 @@
 <?php
-include 'common/header_common.php';
+include 'common/header.php';
 ?>
     
     <div class="container">
@@ -25,11 +25,11 @@ include 'common/header_common.php';
                 </div>
             </div>
 		
-<?php include 'common/sidebar_common.php';?>
+<?php include 'common/sidebar.php';?>
 
         </div><!-- /.row -->
     </div><!-- /.container -->
 
-<?php include 'common/footer_common.php';?>
+<?php include 'common/footer.php';?>
 </body>
 </html>

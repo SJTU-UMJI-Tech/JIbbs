@@ -1,6 +1,7 @@
 <?php
-include 'common/header_common.php';
-include 'common/text_validation.php';
+include 'common/header.php';
+include 'headers/kindeditor.php';
+include 'headers/text_validation.php';
 ?>
     <script type='text/javascript'>
 		$(document).ready(function()
@@ -144,7 +145,7 @@ include 'common/text_validation.php';
 			});
 			
 			// 检查 captcha 是否正确
-			$("#captcha").change(function()
+			$("#captcha").keyup(function()
 			{
 				text_valid(
 					$("#captcha").val(),
@@ -232,13 +233,13 @@ include 'common/text_validation.php';
                 </div>
             </div><!-- /.col-md-8 -->
 
-<?php include 'common/sidebar_common.php';
+<?php include 'common/sidebar.php';
 ?>
 
         </div><!-- /.row -->
     </div><!-- /.container -->
 
-<?php include 'common/footer_common.php';
+<?php include 'common/footer.php';
 ?>
 </body>
 </html>
