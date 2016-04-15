@@ -9,7 +9,7 @@ include 'common/header.php';
                 	'<button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">',
 					'<span id="settings-', data.name, '-text" sid="', (data.selected != null ? data.selected : 0), '"></span> <span class="caret"></span>',
 					'</button>',
-					'<ul class="dropdown-menu">'
+					'<ul class="dropdown-menu" style="height: 200px; overflow-y: scroll;">'
 			];
 			for (index in data.option)
 			{
@@ -38,24 +38,30 @@ include 'common/header.php';
 				{
 					$("#settings-"+data.name+"-text").html($(this).html());
 					$("#settings-"+data.name+"-text").attr('sid', (data.selected != null ? data.selected : 0));
+					if (data.onclick != undefined)
+					{
+						data.onclick(this);
+					}
 				}
 			});
 			$(".settings-"+data.name+"-option").click(function(e)
 			{
 				$("#settings-"+data.name+"-text").html($(e.target).html());
 				$("#settings-"+data.name+"-text").attr('sid', $(e.target).attr('sid'));
+				if (data.onclick != undefined)
+				{
+					data.onclick(e.target);
+				}
 			});
 		}
 		
 		$(document).ready(function()
 		{
-			
-
 			var settings = [];
 			
 			settings[1] = 
 			{
-				name : 'usertype',
+				name : 'user-type',
 				selected : 0,
 				option : 
 				[
@@ -67,6 +73,34 @@ include 'common/header.php';
 					[20, '家长'],
 					[21, '老师'],
 					[22, '毕业校友']
+				],
+				onclick : function(target)
+				{
+					var id = $(target).attr('sid');
+					switch(id)
+					{
+					case 0:
+							
+						break;
+					case 10:
+					
+						break;
+					}
+				}
+			};
+			
+			settings[2] = 
+			{
+				name : 'entrance-year',
+				selected : 2015,
+				option :
+				[
+				<?php
+					for ($i = $site_ji_foundation_year; $i <= date('Y'); $i++)
+					{
+						echo '['.$i.', "'.$i.'"],';
+					}
+				?>
 				]
 			};
 			
@@ -74,6 +108,9 @@ include 'common/header.php';
 			
 			$("#settings-row-1").append(generate_settings_select(settings[1]));
 			init_settings_select(settings[1]);
+			
+			$("#settings-row-2").append(generate_settings_select(settings[2]));
+			init_settings_select(settings[2]);
 			
 			var settings_config = [];
 			settings_config[10] = [1];
@@ -117,12 +154,17 @@ include 'common/header.php';
                         <hr class="smallhr">
                         <div class="ji-settings">
                         	<div class="row">
-                                <h5><label for="main_settings" class="col-sm-3 control-label text-center">个人身份</label></h5>
+                                <h5><label class="col-sm-3 control-label text-center">个人身份</label></h5>
                                 <div id="settings-row-1">
                                 
                                 </div>
                        		</div>
-                        
+                        	<div class="row">
+                                <h5><label class="col-sm-3 control-label text-center">入学年份</label></h5>
+                                <div id="settings-row-2">
+                                
+                                </div>
+                       		</div>
                         </div>
                     </div>
                 </div>
