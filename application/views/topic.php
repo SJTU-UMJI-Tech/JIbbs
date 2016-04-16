@@ -172,9 +172,9 @@
         <div id="editor_form" style="display:none">
         	<div id="editor_reply" style="display:none">
             	<div class="input-group">
-                    <span class="input-group-addon" id="editor_reply_addon">回复</span>
-                    <input type="text" class="form-control" placeholder="None" aria-describedby="editor_reply_addon" readonly>
-                    <span id="editor_reply_remove" class="input-group-addon"><button type="button" class="btn btn-danger"></button></span>
+                    <span class="input-group-addon" id="editor_reply_addon"><strong>回复</strong></span>
+                    <strong><input type="text" class="form-control" placeholder="None" aria-describedby="editor_reply_addon" readonly></strong>
+                    <span id="editor_reply_remove" class="input-group-addon"><button type="button" class="btn btn-small"><strong>取消</strong></button></span>
                 </div>
             </div>
             <form>
