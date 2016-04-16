@@ -237,3 +237,43 @@ legend {
   width:auto;
 
 }
+
+.input-group-addon {
+  padding: 0px 12px;
+  border: 1px solid transparent;
+}
+
+.btn-small{
+	padding: 3px 12px;
+	background-color: #74abdb;
+	color: #eee;
+}
+.btn-small:focus,
+.btn-small.focus {
+   	background-color: #74abdb;
+   	border-color: #74abdb;
+}
+
+.btn-small:hover {
+    background-color: #74abdb;
+    border-color: #74abdb;
+	color: #fff;
+}
+
+.btn-small:active,
+.btn-small.active,
+.open > .dropdown-toggle.btn-small {
+    background-color: #74abdb;
+    border-color: #74abdb;
+}
+
+.btn-small.active.focus,
+.open > .dropdown-toggle.btn-small.focus {
+    background-color: #74abdb;
+    border-color: #75acdc;
+}
+
+.form-control {
+	border:1px solid transparent;
+	box-shadow:inset 0 0px 0px rgba(0,0,0,.075);
+}
