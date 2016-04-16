@@ -5,28 +5,32 @@ include 'common/header.php';
 		function generate_settings_select(data)
 		{
 			var result = [
-				'<div class="btn-group">',
-                	'<button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">',
-					'<span id="settings-', data.name, '-text" sid="', (data.selected != null ? data.selected : 0), '"></span> <span class="caret"></span>',
-					'</button>',
-					'<ul class="dropdown-menu" style="height: 200px; overflow-y: scroll;">'
+				'<div class="row">',
+					'<h5><label class="col-sm-3 control-label text-center" style="margin-top:8px">', data.label, '</label></h5>',
+					'<div class="btn-group">',
+						'<button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">',
+						'<span id="settings-', data.name, '-text" sid="', (data.selected != null ? data.selected : 0), '"></span> <span class="caret"></span>',
+						'</button>',
+						'<ul class="dropdown-menu" style="max-height: 250px; overflow-y: auto;">'
 			];
-			for (index in data.option)
+			for (var index in data.option)
 			{
 				if (data.option[index][0] < 0)
 				{
 					result.push(
-						'<li role="separator" class="divider"></li>');
+							'<li role="separator" class="divider"></li>');
 				}
 				else
 				{
 					result.push(
-						'<li><a sid="', data.option[index][0], '" class="settings-', data.name, '-option" href="javasrcipt:void(0)">', data.option[index][1], '</a></li>');
+							'<li><a sid="', data.option[index][0], '" class="settings-', data.name, '-option" href="javascript:void(0)">', data.option[index][1], '</a></li>');
 				}
 			}			
 			result.push(
-					'</ul>',
-				'</div>');
+						'</ul>',
+					'</div>',
+				'</div>'
+			);
 			return result.join('');
 		}
 		
@@ -46,11 +50,15 @@ include 'common/header.php';
 			});
 			$(".settings-"+data.name+"-option").click(function(e)
 			{
-				$("#settings-"+data.name+"-text").html($(e.target).html());
-				$("#settings-"+data.name+"-text").attr('sid', $(e.target).attr('sid'));
-				if (data.onclick != undefined)
+				if ($("#settings-"+data.name+"-text").attr('sid') != $(e.target).attr('sid'))
 				{
-					data.onclick(e.target);
+					$("#settings-"+data.name+"-text").html($(e.target).html());
+					$("#settings-"+data.name+"-text").attr('sid', $(e.target).attr('sid'));
+					data.selected = $(e.target).attr('sid');
+					if (data.onclick != undefined)
+					{
+						data.onclick(e.target);
+					}
 				}
 			});
 		}
@@ -62,6 +70,7 @@ include 'common/header.php';
 			settings[1] = 
 			{
 				name : 'user-type',
+				label : '个人身份',
 				selected : 0,
 				option : 
 				[
@@ -77,14 +86,14 @@ include 'common/header.php';
 				onclick : function(target)
 				{
 					var id = $(target).attr('sid');
-					switch(id)
+					$("#settings-rows").html('');
+					if (settings_config[id] != undefined)
 					{
-					case 0:
-							
-						break;
-					case 10:
-					
-						break;
+						for (var index in settings_config[id])
+						{
+							$("#settings-rows").append(generate_settings_select(settings[settings_config[id][index]]));
+							init_settings_select(settings[settings_config[id][index]]);
+						}
 					}
 				}
 			};
@@ -92,6 +101,7 @@ include 'common/header.php';
 			settings[2] = 
 			{
 				name : 'entrance-year',
+				label : '入学时间',
 				selected : 2015,
 				option :
 				[
@@ -104,16 +114,61 @@ include 'common/header.php';
 				]
 			};
 			
+			settings[10] = 
+			{
+				name : 'grade',
+				label : '年级',
+				selected : 1,
+				option :
+				[
+					[0, '大一'],
+					[2, '大二'],
+					[3, '大三'],
+					[4, '大四'],
+					[5, '大五'],
+					[6, '大六']
+				]
+			}
+			
+			settings[20] =
+			{
+				name : 'major',
+				label : '专业',
+				selected : 0,
+				option :
+				[
+					[0, ' - - '],
+					[1, '电子信息工程（ECE）'],
+					[2, '机械工程（ME）']
+				]
+			}
+			
+			settings[21] =
+			{
+				name : 'second-major',
+				label : '第二专业',
+				selected : 0,
+				option :
+				[
+					[0, ' - - '],
+					[1, '电子信息工程（ECE）'],
+					[2, '机械工程（ME）']
+				]
+			}
+			
 			//alert(JSON.stringify(settings));
 			
-			$("#settings-row-1").append(generate_settings_select(settings[1]));
-			init_settings_select(settings[1]);
-			
-			$("#settings-row-2").append(generate_settings_select(settings[2]));
-			init_settings_select(settings[2]);
 			
 			var settings_config = [];
-			settings_config[10] = [1];
+			settings_config[10] = [2, 10, 20, 21];
+			
+			
+			$("#settings-user-type").append(generate_settings_select(settings[1]));
+			init_settings_select(settings[1]);
+			
+			
+			
+			
 			
 			
 		});
@@ -152,19 +207,13 @@ include 'common/header.php';
                             </div>
                         </div>
                         <hr class="smallhr">
-                        <div class="ji-settings">
-                        	<div class="row">
-                                <h5><label class="col-sm-3 control-label text-center">个人身份</label></h5>
-                                <div id="settings-row-1">
-                                
-                                </div>
-                       		</div>
-                        	<div class="row">
-                                <h5><label class="col-sm-3 control-label text-center">入学年份</label></h5>
-                                <div id="settings-row-2">
-                                
-                                </div>
-                       		</div>
+                        <div class="ji-settings" id="settings-row">
+                        	<div id="settings-user-type">
+                            
+                            </div>
+                            <div id="settings-rows">
+                            
+                            </div>
                         </div>
                     </div>
                 </div>
