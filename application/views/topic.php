@@ -58,6 +58,7 @@
 					$.change_url();
 					arr['reply_num'] = reply_num;
 					$("#reply_list").html(result);
+					$("[data-toggle='tooltip']").tooltip();
 					if (floor_id % reply_per_page != 1 && floor_id <= arr['reply_num'])
 					{
 						setTimeout(function(){$("body,html").animate({scrollTop:$("#reply_"+floor_id).offset().top-15},0);},0.1);

@@ -103,8 +103,15 @@
 				'</form>'
 				;
 		}
-		var result = 
+		var top = '';
+		
+					'<span><a class="floor-reply-href" href="javascript:void(0)" floorid="' + reply_data['floor_id'] + '">编辑</a></span>&nbsp;•&nbsp;' +
+					'<span><a class="floor-reply-href" href="javascript:void(0)" floorid="' + reply_data['floor_id'] + '">删除</a></span>';
+		var result =
 			'<div class="panel-body" id="reply_' + reply_data['floor_id'] + '" username="' + reply_data['user_name'] + '">' +
+				'<div class="reply-foot text-right text-muted">' +
+					top +
+				'</div>' +
 				'<div class="row show-grid">' +
 					'<div class="col-md-3">' +
 						'<center>' +
@@ -120,7 +127,7 @@
 				'<div class="reply-foot text-right text-muted">' +
 					'<span><a class="floor-reply-href" href="javascript:void(0)" floorid="' + reply_data['floor_id'] + '">回复</a></span>&nbsp;•&nbsp;' +
 					'<span>' + reply_data['floor_id'] + '楼</span>&nbsp;•&nbsp;' +
-					'<span>' + reply_data['create_time'] + '</span>' +
+					'<span data-toggle="tooltip" title="最后编辑 • ' + reply_data['update_time'] + '">' + reply_data['create_time'] + '</span>' +
 				'</div>' +
 			'</div>'
 		;

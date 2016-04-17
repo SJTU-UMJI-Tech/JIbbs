@@ -79,8 +79,7 @@ include 'headers/text_validation.php';
                             <div id="username_div" class="form-group">
                                 <label for="username" class="col-sm-2 control-label">用户名</label>
                                 <div class="col-sm-5">
-                                    <input type="text" class="form-control" id="username" name="username" placeholder="User Name" data-toggle="tooltip" 
-   title="请输入用户名或邮箱">
+                                    <input type="text" class="form-control" id="username" name="username" placeholder="User Name" data-toggle="tooltip" title="请输入用户名或邮箱">
                                     <span id="username_img" style="display:none" aria-hidden="true"></span>
                                 </div>
                                 <label for="username" class="col-sm-4 control-label-left" id="username_error"></label>
@@ -88,8 +87,7 @@ include 'headers/text_validation.php';
                             <div id="password_div" class="form-group">
                                 <label for="password" class="col-sm-2 control-label">密码</label>
                                 <div class="col-sm-5">
-                                    <input type="password" class="form-control" id="password" name="password" placeholder="Password" data-toggle="tooltip" 
-   title="请输入密码，注意大小写">
+                                    <input type="password" class="form-control" id="password" name="password" placeholder="Password" data-toggle="tooltip" title="请输入密码，注意大小写">
                                     <span id="password_img" style="display:none" aria-hidden="true"></span>
                                 </div>
                                 <label for="password" class="col-sm-4 control-label-left" id="password_error"></label>
@@ -97,8 +95,7 @@ include 'headers/text_validation.php';
                             <div id="captcha_div" class="form-group">
                                 <label for="captcha" class="col-sm-2 control-label">验证码</label>
                                 <div class="col-sm-5">
-                                    <input type="text" class="form-control" id="captcha" name="captcha" placeholder="Captcha" data-toggle="tooltip" 
-   title="请输入验证码">
+                                    <input type="text" class="form-control" id="captcha" name="captcha" placeholder="Captcha" data-toggle="tooltip" title="请输入验证码">
                                     <span id="captcha_img" style="display:none" aria-hidden="true"></span>
                                 </div>
                                 <div class="col-sm-3" id="cap_img" onclick="get_cap_img()">
